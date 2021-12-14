@@ -26,5 +26,32 @@ namespace SimpleNavView
         {
             this.InitializeComponent();
         }
+
+        private void NavigationView_Loaded(object sender, RoutedEventArgs e)
+        {
+            ContentFrame.Navigate(typeof(Page1));
+        }
+
+        private void NavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+        {
+            //First check the selected item is settings
+            if(args.IsSettingsSelected)
+            {
+
+            }
+            else
+            {
+                NavigationViewItem item = args.SelectedItem as NavigationViewItem;
+                switch(item.Tag.ToString())
+                {
+                    case "page1":
+                        ContentFrame.Navigate(typeof(Page1));
+                        break;
+                    case "page3":
+                        ContentFrame.Navigate(typeof(Page3));
+                        break;
+                }
+            }
+        }
     }
 }
